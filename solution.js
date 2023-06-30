@@ -23,6 +23,8 @@ class Stack {
     newItem.next = this.top;
     this.top = newItem;
   }
+
+  //  ✓ Can remove from stack using pop method
   pop() {
     if (this.top === null) {
       throw new Error("This stack is empty");
@@ -33,6 +35,11 @@ class Stack {
       this.top = newItem;
       return item;
     }
+  }
+  
+  //  ✓ Check if stack is empty
+  isEmpty() {
+    return this.top === null;
   }
 }
 
