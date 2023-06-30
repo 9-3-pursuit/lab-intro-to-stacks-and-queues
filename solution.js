@@ -50,6 +50,22 @@ class Stack {
   peek() {
     return this.top;
   }
+
+  findMin() {
+    let minimum = this.top;
+    let topNode = this.top;
+
+    while (topNode) {
+      if (minimum.data > topNode.data) {
+        minimum.data = topNode.data;
+      }
+      topNode = topNode.next;
+    }
+    return minimum.data;
+  }
+  // sort(){
+  //   let highest = ""
+  // }
 }
 
 class Queue {

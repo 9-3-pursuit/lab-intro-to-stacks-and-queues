@@ -57,8 +57,8 @@ You will
   - `pop`
   - `size`
   - `isEmpty` check if list is empty
-  - `findMin` data value
   - `peek` top node
+  - `findMin` data value
   - `sort` - sort the stack into ascending order. **CHALLENGE** only use stacks to achieve this (no arrays or objects etc.)
 
 - Create a queue with properties
