@@ -115,7 +115,7 @@ class Queue {
     }
     return ++this.size;
   }
-//  ✓ Can remove from queue using dequeue method
+  //  ✓ Can remove from queue using dequeue method
   dequeue() {
     if (this.first == null) {
       throw new Error("The queue is empty!");
@@ -128,6 +128,18 @@ class Queue {
     this.first = this.first.next;
     this.size--;
     return item.data;
+  }
+  //  ✓ Check if queue is empty
+  isEmpty() {
+    return this.first === null;
+  }
+
+  //  ✓ Peek at first in queue
+  peek() {
+    if (this.first == null) {
+      throw new Error("The queue is empty!");
+    }
+    return this.first;
   }
 }
 module.exports = {
