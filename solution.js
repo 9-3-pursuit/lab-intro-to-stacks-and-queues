@@ -27,7 +27,7 @@ class Stack {
   //  ✓ Can remove from stack using pop method
   pop() {
     if (this.top === null) {
-      throw new Error("This stack is empty");
+      throw new Error("This stack is empty!");
     }
     let item = this.top;
     if (item) {
@@ -36,10 +36,19 @@ class Stack {
       return item;
     }
   }
-  
+
+  size() {}
+
   //  ✓ Check if stack is empty
   isEmpty() {
     return this.top === null;
+  }
+//  ✓ Peek at top of stack
+  peek() {
+    if (this.top === null) {
+      throw new Error("This stack is empty!");
+    }
+    return this.top;
   }
 }
 
