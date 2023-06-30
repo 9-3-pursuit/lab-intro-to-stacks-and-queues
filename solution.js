@@ -141,6 +141,16 @@ class Queue {
     }
     return this.first;
   }
+  // ✓ Count size of queue
+  count() {
+    return this.size;
+  }
+  findMax() {}
+
+  //    ✓ Get last in queue
+  getLast() {
+    return this.last;
+  }
 }
 module.exports = {
   Node,
