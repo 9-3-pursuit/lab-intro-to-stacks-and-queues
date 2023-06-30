@@ -12,12 +12,31 @@ class Stack {
   constructor(top = null) {
     this.top = top;
   }
-  
+
   push(data) {
     let newNode = new Node(data);
     newNode.next = this.top;
     this.top = newNode;
     return this.top;
+  }
+
+  pop() {
+    let removedNode = "";
+    if (this.top) {
+      removedNode = this.top;
+      this.top = this.top.next;
+    }
+    return removedNode;
+  }
+
+  size() {
+    let count = 0;
+    let topNode = this.top;
+    while (topNode) {
+      count++;
+      topNode = topNode.next;
+    }
+    return count;
   }
 }
 
