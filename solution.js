@@ -36,20 +36,42 @@ class Stack {
       return item;
     }
   }
-
-  size() {}
+  //  ✓ Count size of stack
+  size() {
+    let currentNode = this.top;
+    let sizeAmt = 0;
+    while (currentNode) {
+      sizeAmt++;
+      currentNode = currentNode.next;
+    }
+    return sizeAmt;
+  }
+ // ✓ Find minimum data value
+  findMin() {
+    let currentSpot = this.top;
+    let minValue = currentSpot.data;
+    while (currentSpot) {
+      if (currentSpot < minValue) {
+        minValue = currentSpot.data;
+      }
+      currentSpot = currentSpot.next;
+    }
+    return minValue;
+  }
 
   //  ✓ Check if stack is empty
   isEmpty() {
     return this.top === null;
   }
-//  ✓ Peek at top of stack
+  //  ✓ Peek at top of stack
   peek() {
     if (this.top === null) {
       throw new Error("This stack is empty!");
     }
     return this.top;
   }
+
+  sort() {}
 }
 
 // Create a queue with properties - first,last,size,max value
