@@ -145,13 +145,28 @@ class Queue {
   count() {
     return this.size;
   }
-  findMax() {}
+  findMax() {
+    if (!this.first) {
+      return null;
+    }
+    let node = this.first;
+    let maxVal = node.data;
+
+    while (node) {
+      if (node.data > maxVal) {
+        maxVal = node.data;
+      }
+      node = node.next;
+    }
+    return maxVal;
+  }
 
   //    ✓ Get last in queue
   getLast() {
     return this.last;
   }
 }
+
 module.exports = {
   Node,
   Queue,
