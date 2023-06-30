@@ -38,6 +38,18 @@ class Stack {
     }
     return count;
   }
+
+  isEmpty() {
+    if (this.top === null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  peek() {
+    return this.top;
+  }
 }
 
 class Queue {
