@@ -1,3 +1,4 @@
+const { reverse } = require("dns");
 const { nums, words } = require("./data/data.js");
 const { inspect } = require("util");
 
@@ -46,7 +47,7 @@ class Stack {
     }
     return sizeAmt;
   }
- // ✓ Find minimum data value
+  // ✓ Find minimum data value
   findMin() {
     let currentSpot = this.top;
     let minValue = currentSpot.data;
@@ -70,8 +71,27 @@ class Stack {
     }
     return this.top;
   }
+//   ✓ Sort the stack, minimum value on top
+  sort() {
+    let sortStackArr = [];
+    let currentVal = this.top;
+    while (currentVal) {
+      // causes a infinite loop - breaks the terminal
+      // let next = currentVal.next
+      // if (currentVal.data > next.data) {
+      //   currentVal.next = currentVal;
+      //   currentVal = next;
+      // }
+      sortStackArr.push(currentVal.data);
+      currentVal = currentVal.next;
+    }
 
-  sort() {}
+    sortStackArr.sort().reverse();
+
+    sortStackArr.forEach((minVal) => {
+      this.push(minVal);
+    });
+  }
 }
 
 // Create a queue with properties - first,last,size,max value
