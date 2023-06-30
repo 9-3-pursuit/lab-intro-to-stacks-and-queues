@@ -71,7 +71,7 @@ class Stack {
     }
     return this.top;
   }
-//   ✓ Sort the stack, minimum value on top
+  //   ✓ Sort the stack, minimum value on top
   sort() {
     let sortStackArr = [];
     let currentVal = this.top;
@@ -100,6 +100,34 @@ class Queue {
     this.first = null;
     this.last = null;
     this.size = 0;
+  }
+  // ✓ Can create a new node
+  // ✓ Can create a new queue
+  // ✓ Can add to queue using enqueue method
+  enqueue(data) {
+    let newValue = new Node(data);
+    if (!this.first) {
+      this.first = newValue;
+      this.last = newValue;
+    } else {
+      this.last.next;
+      this.last = newValue;
+    }
+    return ++this.size;
+  }
+//  ✓ Can remove from queue using dequeue method
+  dequeue() {
+    if (this.first == null) {
+      throw new Error("The queue is empty!");
+    }
+
+    const item = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return item.data;
   }
 }
 module.exports = {
