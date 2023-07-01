@@ -81,6 +81,7 @@ class Queue {
   dequeue() {
     // let item = this.first;
     // this.first = this.first.next;
+    //this.size--l
     // return item.data;
     if (this.first == null) {
       throw new Error("The queue is empty");
@@ -92,6 +93,21 @@ class Queue {
     this.first = this.first.next;
     this.size--;
     return item.data;
+  }
+
+  isEmpty() {
+    return this.size === 0;
+  }
+  findMax(){
+    let node = this.first;
+    let max = this.first.data;
+    while(node){
+      if(node.data > max){
+        max = node.data;
+      }
+      node = node.next
+    }
+    return max;
   }
 }
 
