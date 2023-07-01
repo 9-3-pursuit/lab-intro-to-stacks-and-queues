@@ -64,6 +64,35 @@ class Queue {
     this.size = 0;
     this.max = value;
   }
+
+ 
+
+  enqueue(data) {
+    let newItem = new Node(data)
+    if (!this.first) {
+      this.first = newItem;
+      this.last = newItem;
+    } else {
+      this.last.next = newItem;
+      this.last = newItem;
+    }
+    this.size++;
+  }
+  dequeue() {
+    // let item = this.first;
+    // this.first = this.first.next;
+    // return item.data;
+    if (this.first == null) {
+      throw new Error("The queue is empty");
+    }
+    const item = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return item.data;
+  }
 }
 
 const numStack = new Stack();
