@@ -65,7 +65,9 @@ class Queue {
     this.max = value;
   }
 
- 
+  count() {
+    return this.size;
+  }
 
   enqueue(data) {
     let newItem = new Node(data)
@@ -81,7 +83,7 @@ class Queue {
   dequeue() {
     // let item = this.first;
     // this.first = this.first.next;
-    //this.size--l
+    //this.size--
     // return item.data;
     if (this.first == null) {
       throw new Error("The queue is empty");
@@ -97,6 +99,14 @@ class Queue {
 
   isEmpty() {
     return this.size === 0;
+  }
+
+  peek() {
+    return this.first;
+  }
+
+  getLast() {
+    return this.last;
   }
   findMax(){
     let node = this.first;
