@@ -142,33 +142,18 @@ class Stack {
 
   sort() {
     let stack = new Stack();
-    let item = this.top()
     while(!this.isEmpty()) {
-      while(item) {
-
+      let item = this.pop();
+      
+      while(!stack.isEmpty() && stack.peek().data < item.data) {
+        this.push(stack.pop().data);
       }
-      stack.push(this.findMin());
 
-      this.pop()
-      console.log(this);
-      console.log(stack);
+      stack.push(item.data);
     }
-   return stack;
+    this.top = stack.top;
   }
 }
-
-wordStack = new Stack();
-for (let word of words) {
-  wordStack.push(word);
-}
-numStack = new Stack();
-for (let num of nums) {
-  numStack.push(num);
-}
-
-
-console.log(numStack.sort())
-console.log(inspect(numStack, { colors: true, depth: 12 }));
 
 
 module.exports = {
