@@ -2,7 +2,7 @@ const { nums, words } = require("./data/data.js");
 const { inspect } = require("util");
 
 class Node {
-  constructor(data, next) {
+  constructor(data, next = null) {
     this.data = data;
     this.next = next;
   }
@@ -63,19 +63,112 @@ class Stack {
     }
     return minimum.data;
   }
-  // sort(){
-  //   let highest = ""
-  // }
+
+  sort() {
+    let sortedStack = new Stack();
+
+    while (!this.isEmpty()) {
+      const temp = this.pop();
+      while (!sortedStack.isEmpty() && sortedStack.peek().data < temp.data) {
+        this.push(sortedStack.pop().data);
+      }
+      sortedStack.push(temp.data);
+    }
+    this.top = sortedStack.top;
+    
+    // let minimum = this.findMin();
+    // let topNode = this.top;
+    // topNode.data = this.findMin();
+    // while (topNode) {
+    //   if (minimum > topNode.data) {
+    //     topNode.next.data = minimum;
+    //   }
+    //   topNode = topNode.next;
+    // }
+    // return minimum;
+  }
 }
 
 class Queue {
-  constructor(first, last, size, maxValue) {
+  constructor(first = null, last = null, size = 0, maxValue) {
     this.first = first;
     this.last = last;
     this.size = size;
     this.maxValue = maxValue;
   }
+
+  enqueue(data) {
+    let newNode = new Node(data);
+    if (!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.size++;
+  }
+
+  dequeue() {
+    let removedNode = "";
+    if (this.first) {
+      removedNode = this.first;
+      this.first = this.first.next;
+      this.size--;
+    } else {
+      return null;
+    }
+    return removedNode.data;
+  }
+
+  count() {
+    return this.size;
+  }
+
+  isEmpty() {
+    if (!this.first) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  peek() {
+    return this.first;
+  }
+
+  getLast() {
+    return this.last;
+  }
+
+  findMax() {
+    if (this.first === null) {
+      return null;
+    }
+    let maximum = this.first.data;
+    let current = this.first;
+    while (current) {
+      if (current.data > maximum) {
+        maximum = current.data;
+      }
+      current = current.next;
+    }
+    return maximum;
+  }
 }
+
+wordQueue = new Queue();
+for (let word of words) {
+  wordQueue.enqueue(word);
+}
+
+numQueue = new Queue();
+for (let num of nums) {
+  numQueue.enqueue(num);
+}
+
+numQueue.findMax();
+console.log(numQueue.findMax());
 
 module.exports = {
   Node,
