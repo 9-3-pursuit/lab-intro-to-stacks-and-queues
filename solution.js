@@ -75,6 +75,8 @@ class Stack {
       sortedStack.push(temp.data);
     }
     this.top = sortedStack.top;
+
+    // below code passes but sorts as 1,10,2,3,4,5
     
     // let minimum = this.findMin();
     // let topNode = this.top;
