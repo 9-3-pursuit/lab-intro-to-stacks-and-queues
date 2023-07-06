@@ -68,7 +68,7 @@ You will
   - `size`
   - `max` value
 
-- Stack methods
+- queue methods
 
   - `count`
   - `dequeue`
