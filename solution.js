@@ -86,7 +86,7 @@ class Queue {
     this.first = null;
     this.last = null;
     this.length = 0; 
-    this.max = value;
+    this.max = this.findMax();
   }
   count(){
     return this.length;
@@ -109,7 +109,28 @@ class Queue {
       this.length--;
       return removed.data;
     }
-
+    findMax(){
+      if(!this.first) return undefined;
+      let current = this.first;
+      let max = current.data;
+      while(current.next){
+        if(current.data < current.next.data){
+           max = current.next.data;
+        }
+        current = current.next;
+      }
+      return max;
+    }
+    getLast(){
+      return this.last;
+    }
+    isEmpty(){
+      return this.length === 0 ? true : false;
+    }
+    peek(){
+      return this.first;
+    }
+    
    }
     
   
