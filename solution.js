@@ -55,7 +55,44 @@ class Stack{
     }
     return min;
   }
+  toArray() {
+    const stackArray = [];
+    let node = this.top;
+    while (node) { 
+      stackArray.push(node.data);
+      node = node.next;
+    }
+    return stackArray;
+
+    
+  }
+  clear() {
+    this.top = null;
+  }
+
+  fromArrayToStack(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      this.push(arr[i]);
+    }
+  }
+  sort() {
+    const stackArray = this.toArray();
+    stackArray.sort((a, b) => {
+     if (a > b) {
+       return -1;
+     } else if (a < b) { 
+       return 1;
+     } else {
+       return 0;
+     }
+    });
+    console.log(stackArray)
+    this.clear();
+   this.fromArrayToStack(stackArray);
+  }
 }
+
+
 
 class Queue {
   constructor(value) {
