@@ -65,16 +65,17 @@ class Stack {
   }
 
   sort() {
-    let sortedStack = new Stack();
+    const sortedStack = new Stack();
 
-    while (!this.isEmpty()) {
+    while (!this.isEmpty()) {  
       const temp = this.pop();
-      while (!sortedStack.isEmpty() && sortedStack.peek().data < temp.data) {
+      if (!sortedStack.isEmpty() && sortedStack.peek().data < temp.data) {
         this.push(sortedStack.pop().data);
       }
       sortedStack.push(temp.data);
     }
     this.top = sortedStack.top;
+
 
     // below code passes but sorts as 1,10,2,3,4,5
     
@@ -169,8 +170,18 @@ for (let num of nums) {
   numQueue.enqueue(num);
 }
 
-numQueue.findMax();
-console.log(numQueue.findMax());
+wordStack = new Stack();
+for (let word of words) {
+  wordStack.push(word);
+}
+
+numStack = new Stack();
+for (let num of nums) {
+  numStack.push(num);
+}
+console.log(inspect(numStack, {colors: true, depth: 12}))
+numStack.sort()
+console.log(inspect(numStack, {colors: true, depth: 12}))
 
 module.exports = {
   Node,
