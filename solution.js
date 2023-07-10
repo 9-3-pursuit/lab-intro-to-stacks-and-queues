@@ -8,6 +8,78 @@ class Node {
   }
 }
 
+class Stack {
+  constructor(top = null) {
+    this.top = top;
+  }
+
+  peek() {
+    if (this.top === null) {
+      console.log("The stack is empty");
+    }
+    return this.top;
+  }
+
+  isEmpty() {
+    return this.top === null;
+  }
+
+  push(data) {
+    const newItem = new Node(data);
+    newItem.next = this.top;
+    this.top = newItem;
+  }
+
+  pop() {
+    if (this.top === null) {
+      console.log("The stack is empty");
+    }
+
+    let item = this.top;
+    if (item) {
+      let newItem = item.next;
+      this.top = newItem;
+      return item;
+    }
+  }
+
+  size() {
+    let size = 0;
+    let item = this.top;
+    while(item) {
+      size++;
+      item = item.next;
+    }
+    return size;
+  }
+
+  findMin() {
+    let min = this.top;
+    let item = this.top;
+    while(item) {
+      if (item.data < min.data) {
+        min = item;
+      }
+      item = item.next;
+    }
+    return min.data;
+  }
+
+  sort() {
+    let stack = new Stack();
+    while(!this.isEmpty()) {
+      let item = this.pop();
+      
+      while(!stack.isEmpty() && stack.peek().data < item.data) {
+        this.push(stack.pop().data);
+      }
+
+      stack.push(item.data);
+    }
+    this.top = stack.top;
+  }
+}
+
 class Queue {
   constructor() {
     this.first = null;
@@ -83,77 +155,7 @@ class Queue {
   }
 }
 
-class Stack {
-  constructor(top = null) {
-    this.top = top;
-  }
 
-  peek() {
-    if (this.top === null) {
-      console.log("The stack is empty");
-    }
-    return this.top;
-  }
-
-  isEmpty() {
-    return this.top === null;
-  }
-
-  push(data) {
-    const newItem = new Node(data);
-    newItem.next = this.top;
-    this.top = newItem;
-  }
-
-  pop() {
-    if (this.top === null) {
-      console.log("The stack is empty");
-    }
-
-    let item = this.top;
-    if (item) {
-      let newItem = item.next;
-      this.top = newItem;
-      return item;
-    }
-  }
-
-  size() {
-    let size = 0;
-    let item = this.top;
-    while(item) {
-      size++;
-      item = item.next;
-    }
-    return size;
-  }
-
-  findMin() {
-    let min = this.top;
-    let item = this.top;
-    while(item) {
-      if (item.data < min.data) {
-        min = item;
-      }
-      item = item.next;
-    }
-    return min.data;
-  }
-
-  sort() {
-    let stack = new Stack();
-    while(!this.isEmpty()) {
-      let item = this.pop();
-      
-      while(!stack.isEmpty() && stack.peek().data < item.data) {
-        this.push(stack.pop().data);
-      }
-
-      stack.push(item.data);
-    }
-    this.top = stack.top;
-  }
-}
 
 
 
