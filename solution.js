@@ -11,13 +11,13 @@ class Node {
 class Stack {
   constructor() {
     this.top = null
-    this.size = 0
+    // this.size = 0
   }
   push(data) {
     const newNode = new Node(data)
     newNode.next = this.top
     this.top = newNode
-    this.size++
+    // this.size++
   }
 
   pop() {
@@ -28,7 +28,7 @@ class Stack {
     const removedNode = this.top
     this.top = removedNode.next
     removedNode.next = null
-    this.size--
+    // this.size--
 
     return removedNode
   }
@@ -77,6 +77,27 @@ class Stack {
     return min
   }
 
+  sort() {
+
+    let array = []
+    let array1 = new Stack()
+    while (this.top != null) {
+      let temporary = this.pop().data
+      array.push(temporary)
+    } 
+
+    
+    let sortedArray2 = array.sort().reverse()
+    
+    for (let element of sortedArray2) {
+      array1.push(element)
+    }
+    this.top = array1.top
+    console.log('array1:', array1, 'array2', sortedArray2)
+    console.log('test', this.top.data)
+    
+  }
+
   
 }
 
@@ -123,7 +144,7 @@ class Queue{
     
   }
 
-  size() {
+  count() {
     let count = 0;
 
     let current = this.first
