@@ -145,27 +145,32 @@ class Queue {
   count() {
     return this.size;
   }
+
   findMax() {
-    if (!this.first) {
-      return null;
+    if (this.first === null) {
+      throw new Error("The queue is empty");
     }
     let node = this.first;
-    let maxVal = node.data;
+    let max = node.data;
 
-    while (node) {
-      if (node.data > maxVal) {
-        maxVal = node.data;
+    while (node !== null) {
+      if (node.data > max) {
+        max = node.data;
       }
       node = node.next;
     }
-    return maxVal;
+    return max;
   }
+
+  
 
   //    ✓ Get last in queue
   getLast() {
     return this.last;
   }
 }
+
+console.log(Queue.findMax())
 
 module.exports = {
   Node,
