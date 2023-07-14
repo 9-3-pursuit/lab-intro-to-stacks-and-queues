@@ -72,6 +72,57 @@ class Stack {
     }
   }
 }
+class Queue {
+  constructor(first, last, size = 0, max = null) {
+    this.first = first;
+    this.last = last;
+    this.size = size;
+    this.max = max;
+  }
+  enqueue(node) {
+    let newNode = new Node(node);
+    if (!this.first) {
+      this.first = newNode;
+    } else {
+      this.last.next = newNode;
+    }
+    this.last = newNode;
+    this.size++;
+    if (newNode.data > this.max) {
+      this.max = newNode.data;
+    }
+  }
+  dequeue() {
+    let temp = this.first.data;
+    this.first = this.first.next;
+    this.size--;
+    return temp;
+  }
+  count() {
+    return this.size;
+  }
+  isEmpty() {
+    return !this.first;
+  }
+  peek() {
+    return this.first;
+  }
+  getLast() {
+    return this.last;
+  }
+  findMax() {
+    let curr = this.first;
+    let max = -Infinity;
+    while (curr) {
+      if (curr.data > max) {
+        max = curr.data;
+      }
+      curr = curr.next;
+    }
+    this.max = max;
+    return max;
+  }
+}
 
 module.exports = {
   Node,
