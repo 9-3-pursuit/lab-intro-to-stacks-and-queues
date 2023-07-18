@@ -1,5 +1,5 @@
 class Node {
-  constructor(data = null) {
+  constructor(data) {
     this.data = data;
     this.next = null;
   }
@@ -8,142 +8,146 @@ class Node {
 class Stack {
   constructor() {
     this.top = null;
+    this.length = 0;
   }
 
   push(data) {
     const newNode = new Node(data);
-    if (this.top === null) {
-      this.top = newNode;
-    } else {
-      newNode.next = this.top;
-      this.top = newNode;
-    }
-  }
-
-  pop() {
-    if (this.top === null) {
-      return null;
-    }
-    const removedNode = this.top;
-    this.top = this.top.next;
-    return removedNode.data;
+    newNode.next = this.top;
+    this.top = newNode;
+    this.length++;
   }
 
   size() {
-    let count = 0;
-    let current = this.top;
-    while (current !== null) {
-      count++;
-      current = current.next;
+    return this.length;
+  }
+
+  pop() {
+    if (!this.top) {
+      return null;
     }
-    return count;
+
+    const poppedNode = this.top;
+    this.top = this.top.next;
+    poppedNode.next = null;
+    this.length--;
+    return poppedNode.data;
   }
 
   isEmpty() {
-    return this.top === null;
+    return this.length === 0;
   }
 
   peek() {
-    if (this.top === null) {
+    if (!this.top) {
       return null;
     }
     return this.top.data;
   }
 
   findMin() {
-    if (this.top === null) {
+    if (!this.top) {
       return null;
     }
+
     let current = this.top;
-    let min = this.top.data;
-    while (current !== null) {
-      if (current.data < min) {
-        min = current.data;
+    let minValue = current.data;
+    while (current) {
+      if (current.data < minValue) {
+        minValue = current.data;
       }
       current = current.next;
     }
-    return min;
+    return minValue;
   }
 
   sort() {
-    if (this.top === null) {
+    if (!this.top || !this.top.next) {
       return;
     }
-    const tempStack = new Stack();
+  
+    const sortedStack = new Stack();
     while (!this.isEmpty()) {
       const temp = this.pop();
-      while (!tempStack.isEmpty() && tempStack.peek() > temp) {
-        this.push(tempStack.pop());
+      while (!sortedStack.isEmpty() && sortedStack.peek() < temp) {
+        this.push(sortedStack.pop());
       }
-      tempStack.push(temp);
+      sortedStack.push(temp);
     }
-    while (!tempStack.isEmpty()) {
-      this.push(tempStack.pop());
-    }
+  
+    this.top = sortedStack.top;
+    this.length = sortedStack.length;
   }
+  
 }
 
 class Queue {
   constructor() {
     this.first = null;
     this.last = null;
-    this.size = 0;
-    this.max = Number.NEGATIVE_INFINITY;
+    this.length = 0;
+  }
+
+  count() {
+    return this.length;
   }
 
   enqueue(data) {
     const newNode = new Node(data);
-    if (this.first === null) {
+    if (!this.first) {
       this.first = newNode;
       this.last = newNode;
     } else {
       this.last.next = newNode;
       this.last = newNode;
     }
-    this.size++;
-    if (data > this.max) {
-      this.max = data;
-    }
+    this.length++;
   }
 
   dequeue() {
-    if (this.first === null) {
+    if (!this.first) {
       return null;
     }
-    const removedNode = this.first;
+
+    const dequeuedNode = this.first;
     this.first = this.first.next;
-    this.size--;
-    if (this.size === 0) {
-      this.last = null;
-      this.max = Number.NEGATIVE_INFINITY;
-    }
-    return removedNode.data;
-  }
-
-  count() {
-    return this.size;
-  }
-
-  isEmpty() {
-    return this.size === 0;
-  }
-
-  peek() {
-    if (this.first === null) {
-      return null;
-    }
-    return this.first.data;
-  }
-
-  getLast() {
-    if (this.last === null) {
-      return null;
-    }
-    return this.last.data;
+    dequeuedNode.next = null;
+    this.length--;
+    return dequeuedNode.data;
   }
 
   findMax() {
-    return this.max;
+    if (!this.first) {
+      return null;
+    }
+
+    let current = this.first;
+    let maxValue = current.data;
+    while (current) {
+      if (current.data > maxValue) {
+        maxValue = current.data;
+      }
+      current = current.next;
+    }
+    return maxValue;
+  }
+
+  getLast() {
+    if (!this.last) {
+      return null;
+    }
+    return this.last;
+  }
+
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  peek() {
+    if (!this.first) {
+      return null;
+    }
+    return this.first;
   }
 }
 
